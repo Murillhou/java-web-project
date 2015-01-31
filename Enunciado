@@ -1,0 +1,123 @@
+                                Programación Avanzada de Aplicaciones
+                                Práctica 5ª: Cliente web de correo con JSPs
+ 
+
+                    Introducción
+
+El objetivo de esta práctica es que el alumno comprenda y utilice los elementos básicos
+de la programación servidora en java usando los recursos de la plataforma Java EE.
+Para la aplicación se utilizará una arquitectura de dos capas por simplicidad.
+Descripción del sistema
+La aplicación a desarrollar no incluirá separación de papeles
+(presentación/negocio/datos) por lo que sólo se utilizarán páginas jsp en su codificación
+(usar JavaBeans será opcional). Se incluirán también mecanismos para el control del
+estado, de la sesión y del tratamiento de los errores.
+
+Como cliente usaremos un navegador web lo que implica que la página o páginas que se
+desarrollen deberán enviar las informaciones como documentos HTML o XHTML. El
+sistema a construir consistirá en un sitio web de acceso controlado (solo para usuarios
+registrados). A aquellos usuarios registrados se les ofrecerá la posibilidad de gestionar
+su correo vía web. La gestión de los usuarios registrados y la configuración necesaria
+para su correo se realizará de forma interna por la aplicación, utilizando un fichero de
+configuración con la información necesaria y con el formato que prefiera el alumno.
+
+
+                    Interfaz de la aplicación en el cliente
+
+Como ya se ha comentado la interfaz con el cliente se desarrollará utilizando páginas
+jsp. Se describe seguidamente el comportamiento de la aplicación y cada una de las
+diferentes páginas que se visualizarán en el navegador del cliente. Al conectarse con la
+página inicial aparecerá un formulario de acceso parecido a éste:
+
+El formulario permite entrar como usuario registrado. Al pulsar “enviar” se conectará
+con la página jsp correspondiente pasándole los parámetros recibidos y pueden ocurrir
+dos cosas:
+    · El usuario no existe o los datos no son correctos (faltan, están
+incompletos, etc.), en cuyo caso mostrará la página de error que se
+describe más adelante.
+    · El usuario existe, en cuyo caso iniciará la sesión y mostrará la página
+principal de la aplicación que contiene un listado de mensajes recibidos
+además del resto de operaciones que se pueden realizar.
+
+En esta página principal de la aplicación, si pulsamos en “enviar” se mostrará otra
+página con un formulario de envío de mensajes.
+
+Al pulsar “enviar” se invocará un jsp que envíe el mensaje y nos devuelva de nuevo la
+página principal pero esta vez con el listado de mensajes de la carpeta “enviados”.
+
+Si, en la página principal, pulsamos sobre una de las carpetas (en nuestro caso:
+Enviados o Recibidos), se actualizará dicha página principal mostrando los mensajes de esa carpeta.
+
+Si, en la página principal, pulsamos sobre uno de los mensajes de la lista, se invocará una nueva página que nos mostrará los
+datos de ese mensaje. Esta página, a su vez, tiene un enlace que nos devuelve de nuevo a la página principal
+mostrando los mensajes de la carpeta correspondiente.
+
+En la página principal, al pulsar “Salir” se termina la sesión de usuario y se muestra la siguiente página, desde donde
+podríamos volver de nuevo a la página de autenticación si así lo quisiéramos.
+
+En caso de que se produzca algún error grave en algún punto de la aplicación, se
+mostrará una página de error. Esta página de error, cerraría también la sesión y nos permitiría empezar de nuevo. Sería
+conveniente también que mostrara un texto explicativo del tipo de error producido.
+
+El alumno también puede ampliar de manera opcional las operaciones a realizar por la
+aplicación. Por ejemplo: Borrar mensajes, contestar a un mensaje, reenviar mensajes,
+crear y borrar carpetas, etc.
+
+
+                    Estructura de capas
+
+Las operaciones serán implementadas utilizando páginas jsp que deberán:
+    
+    · Recibir los parámetros asociados a las peticiones.
+    
+    · Procesar dicha información y acceder a los datos necesarios para ejecutar la operación y obtener los resultados de
+      las operaciones (para ello deberán leer el fichero de mensajes, ejecutar la operación y cerrar el fichero en el caso de
+      operaciones sobre las carpetas “enviados” y “” o acceder al servidor de correo y leer o enviar los mensajes en el caso
+      de las operaciones de lectura de mensajes recibidos o de envío de mensajes). También acceder a la configuración de los
+      usuarios almacenada.
+
+· Generar la salida HTML a partir de dichos resultados.
+
+· Generar mensajes de error y enviarlos a la página de error para que esta genere la salida adecuada como resultado de una
+      operación errónea.
+
+
+                    Consideraciones de implementación
+
+Vale aquí lo ya descrito para la práctica 4, pero teniendo ahora en cuenta que no es necesario realizar las operaciones
+de despliegue. Además deberá tenerse en cuenta:
+
+  1. Se deberán controlar y encauzar la información de todos los errores (errores de la aplicación y excepciones)
+    a través de la página de error. En la página de tratamiento de errores se deberá obligatoriamente introducir un enlace
+    que permita volver al inicio.
+    
+  2. No es objetivo de la asignatura la realización de sitios web con un diseño gráfico muy elaborado así como tampoco lo es
+    el conocimiento de las técnicas que esto implica (CSS, programación en el cliente, etc.). Así pues, no se valorará
+    especialmente en la parte obligatoria el estilo de presentación de las diferentes páginas.
+    
+    
+                      Desarrollo de la práctica
+
+  Fase de diseño previo
+    No es necesario entregar ningún diseño previo antes del primer día de laboratorio, pero se recomienda que el alumno haya
+    leído el enunciado de la práctica y pensado en la estructura de la aplicación y las páginas jsp a desarrollar.
+    
+  Realización progresiva de la práctica
+    Se recomienda también realizar la práctica de manera progresiva según se van adquiriendo en las clases de teoría los
+    conocimientos correspondientes.
+    Por ejemplo se puede dejar para el final todo lo relativo a autenticación de usuarios o manejo de sesiones.
+
+  Fase de codificación
+    En esta fase se procederá a codificar las clases identificadas, realizando las pruebas necesarias hasta el correcto
+    funcionamiento de la aplicación de acuerdo a la interfaz especificada en el enunciado para lo que se tendrán en cuenta
+    los siguientes requisitos:
+    
+      · Se comentarán las clases y todos los métodos adecuadamente (descripción, parámetros, valor de retorno si lo hay)
+        para javadoc.
+
+      · Se utilizará la nomenclatura estándar de Java (mayúsculas, etc.) para los nombres de variables, métodos, etc.
+        y los nombres estándar de métodos get/set para los que acceden a atributos de la clase.
+        
+  Parte opcional.
+    El alumno podrá implementar las operaciones opcionales que se indican en el texto. También, de manera opcional,
+    podrá realizar la aplicación utilizando javaBeans.
