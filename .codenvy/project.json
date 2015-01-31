@@ -1,0 +1,1 @@
+{"builders":{"default":"maven"},"runners":{"configs":{"system:/java/web/tomcat7":{"ram":0,"variables":{},"options":{}}},"default":"system:/java/web/tomcat7"},"type":"maven","attributes":{}}

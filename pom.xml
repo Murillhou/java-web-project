@@ -9,4 +9,20 @@
   <build>
     <finalName>java-web-sample</finalName>
   </build>
+  <dependencies>
+  <dependency>
+    <groupId>com.paa</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mail.jar</systemPath>
+  </dependency>
+  <dependency>
+    <groupId>com.paa</groupId>
+    <artifactId>paa.correo</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/paa.correo.jar</systemPath>
+  </dependency>
+</dependencies>
 </project>
